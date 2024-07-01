@@ -24,3 +24,8 @@ Contributions are welcome! I have only two conditions:
 
 1. If you just want to change the aesthetic of the plugin, make your suggestion in [Issues](https://github.com/yikuansun/photopea-pexels/issues) rather than making a Pull Request.
 2. If you want to make a change which compromises or removes an existing feature, ask me in [Issues](https://github.com/yikuansun/photopea-pexels/issues) before making a Pull Request.
+3. Make sure you continue to adhere to the [Pexels API guidelines](https://www.pexels.com/api/documentation/?language=javascript#guidelines).
+
+## Acknowledgements
+
+Thanks so much to Pexels for providing the API!
