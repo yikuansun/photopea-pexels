@@ -11,10 +11,13 @@ export async function GET({ url }) {
     if (query) {
         results = await client.photos.search({
             query: query,
+            per_page: 50,
         });
     }
     else {
-        results = await client.photos.curated();
+        results = await client.photos.curated({
+            per_page: 50,
+        });
     }
     return json({
         message: "success",
