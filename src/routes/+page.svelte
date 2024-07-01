@@ -71,6 +71,7 @@
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
                 <option value="large">Large</option>
+                <option value="large2x">Double Large</option>
                 <option value="original">Original Size</option>
             </select>
         </label>
