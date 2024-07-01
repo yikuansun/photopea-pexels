@@ -1,6 +1,7 @@
 <script>
     import { base } from "$app/paths";
     import { onMount } from "svelte";
+    import Photopea from "$lib/photopea.mjs";
 
     let photos = [];
     let query = "";
@@ -67,7 +68,11 @@
             <option value="original">Original Size</option>
         </select>
         <br />
-        <button>
+        <button on:click={() => {
+            Photopea.runScript(window.parent, `
+                app.open("${modalPhoto["src"][exportSize]}", null, true);
+            `);
+        }}>
             Add to Document
         </button>
     </div>
