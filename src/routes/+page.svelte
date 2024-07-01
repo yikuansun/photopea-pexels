@@ -28,6 +28,10 @@
     });
 </script>
 
+<div id="topBar">
+    <input id="searchBar" type="text" bind:value={query} placeholder="Search for photos" on:change={getPhotos} />
+</div>
+
 <div class="image-gallery">
     {#each photos as p}
         <li>
@@ -44,6 +48,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        margin: 8px;
+        margin-top: 0;
     }
 
     .image-gallery > li {
@@ -64,5 +70,23 @@
     .image-gallery::after {
         content: "";
         flex-grow: 999;
+    }
+
+    #searchBar {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    #topBar {
+        position: sticky;
+        top: 0; /* global body margin */
+        background-color: white;
+        padding: 8px;
+        z-index: 5;
+    }
+
+    :global(body) {
+        margin: 0;
     }
 </style>
