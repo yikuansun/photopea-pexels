@@ -57,8 +57,7 @@
 
 {#if modalOpen}
     <div id="leModal" transition:fly={{ y: "100vh" }}>
-        <button on:click={() => { modalOpen = false; }}>Close</button>
-        <br /> <br />
+        <button on:click={() => { modalOpen = false; }} class="closeButton">x</button>
         Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
         <br />
         <a target="_blank" href={modalPhoto["url"]}>
@@ -192,6 +191,18 @@
         outline: none!important;
 
      }
+
+     .closeButton {
+        position: absolute;
+        top: 0;
+        right: 7px;
+        background-color: transparent!important;
+        border: 0;
+        padding: 0;
+        color: grey;
+        font-size: 32px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 </style>
 
 <svelte:head>
