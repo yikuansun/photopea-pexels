@@ -4,20 +4,23 @@
 
     let photos = [];
     let query = "";
-    let nextPageEndpoint = null;
+    let morePages = false;
+    let pagesRead = 0;
 
     async function getPhotos() {
         let response = await fetch(base + "/api/search?q=" + query);
         let json = await response.json();
         photos = json["data"]["photos"];
-        nextPageEndpoint = json["data"]["next_page"];
+        morePages = json["data"]["next_page"]?true:false;
+        pagesRead = 1;
     }
 
     async function getMorePhotos() {
-        let response = await fetch(nextPageEndpoint);
+        let response = await fetch(base + "/api/search?q=" + query + "&page=" + (pagesRead + 1));
         let json = await response.json();
         photos = [...photos, ...json["data"]["photos"]];
-        nextPageEndpoint = json["data"]["next_page"];
+        morePages = json["data"]["next_page"]?true:false;
+        pagesRead++;
     }
 
     onMount(() => {
@@ -32,6 +35,9 @@
         </li>
     {/each}
 </div>
+{#if morePages}
+    <button on:click={getMorePhotos}>Show More</button>
+{/if}
 
 <style>
     .image-gallery {
