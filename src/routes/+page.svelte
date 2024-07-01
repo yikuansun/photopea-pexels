@@ -51,7 +51,7 @@
     <button on:click={getMorePhotos}
         style:margin="8px"
         style:margin-top={0}
-        style:width="100%"
+        style:width="calc(100% - 16px)"
         style:box-sizing="border-box">Show More</button>
 {/if}
 
@@ -62,22 +62,25 @@
         Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
         <br />
         <a target="_blank" href={modalPhoto["url"]}>
-            <div id="modalPhoto" style:background-image="url('{modalPhoto["src"]["medium"]}')"></div>
+            <div id="modalPhoto" style:background-image="url('{modalPhoto["src"]["medium"]}')" style:margin-top="7px"></div>
         </a>
-        <br />
-        Size:
-        <select bind:value={exportSize}>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-            <option value="original">Original Size</option>
-        </select>
-        <br />
+        <label style:display="block"
+            style:text-align="center"
+            style:margin="7px">
+            Size:
+            <select bind:value={exportSize}>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="original">Original Size</option>
+            </select>
+        </label>
         <button on:click={() => {
             Photopea.runScript(window.parent, `
                 app.open("${modalPhoto["src"][exportSize]}", null, true);
             `);
-        }}>
+        }} style:width="100%"
+        style:box-sizing="border-box">
             Add to Document
         </button>
     </div>
