@@ -2,6 +2,7 @@
     import { base } from "$app/paths";
     import { onMount } from "svelte";
     import Photopea from "$lib/photopea.mjs";
+    import { fly } from "svelte/transition";
 
     let photos = [];
     let query = "";
@@ -47,11 +48,15 @@
     {/each}
 </div>
 {#if morePages}
-    <button on:click={getMorePhotos}>Show More</button>
+    <button on:click={getMorePhotos}
+        style:margin="8px"
+        style:margin-top={0}
+        style:width="100%"
+        style:box-sizing="border-box">Show More</button>
 {/if}
 
 {#if modalOpen}
-    <div id="leModal">
+    <div id="leModal" transition:fly={{ y: "100vh" }}>
         <button on:click={() => { modalOpen = false; }}>Close</button>
         <br /> <br />
         Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
@@ -112,6 +117,10 @@
         width: 100%;
         box-sizing: border-box;
         padding: 5px;
+        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        outline: none!important;
+        border-radius: 4px;
+        border: 1px solid grey;
     }
 
     #topBar {
@@ -124,6 +133,7 @@
 
     :global(body) {
         margin: 0;
+        overflow-x: hidden;
     }
 
     #leModal {
@@ -149,5 +159,40 @@
 
     :global(body) {
         background-color: white;
+        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     }
+
+    button {
+        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        background-color: #05a081;
+        color: white;
+        border: 0;
+        padding: 8px 16px;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+    }
+
+    button:hover {
+        background-color: #059377;
+        cursor: pointer;
+    }
+
+    a {
+        color: #414141;
+    }
+
+     select {
+        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        border: 1px solid grey;
+        border-radius: 4px;
+        padding: 3px 5px;
+        outline: none!important;
+
+     }
 </style>
+
+<svelte:head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+</svelte:head>
