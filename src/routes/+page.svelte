@@ -6,6 +6,9 @@
     let query = "";
     let morePages = false;
     let pagesRead = 0;
+    let modalPhoto = {};
+    let modalOpen = false;
+    let exportSize = "medium";
 
     async function getPhotos() {
         let response = await fetch(base + "/api/search?q=" + query);
@@ -34,13 +37,40 @@
 
 <div class="image-gallery">
     {#each photos as p}
-        <li>
+        <li on:click={() => {
+            modalPhoto = p;
+            modalOpen = true;
+        }}>
             <img src={p["src"]["medium"]} alt={p["alt"]} draggable={false} />
         </li>
     {/each}
 </div>
 {#if morePages}
     <button on:click={getMorePhotos}>Show More</button>
+{/if}
+
+{#if modalOpen}
+    <div id="leModal">
+        <button on:click={() => { modalOpen = false; }}>Close</button>
+        <br /> <br />
+        Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
+        <br />
+        <a target="_blank" href={modalPhoto["url"]}>
+            <div id="modalPhoto" style:background-image="url('{modalPhoto["src"]["medium"]}')"></div>
+        </a>
+        <br />
+        Size:
+        <select bind:value={exportSize}>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="original">Original Size</option>
+        </select>
+        <br />
+        <button>
+            Add to Document
+        </button>
+    </div>
 {/if}
 
 <style>
@@ -57,6 +87,7 @@
         position: relative;
         list-style-type: none;
         flex-grow: 1;
+        cursor: pointer;
     }
 
     .image-gallery li img {
@@ -88,5 +119,30 @@
 
     :global(body) {
         margin: 0;
+    }
+
+    #leModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        box-sizing: border-box;
+        padding: 10px;
+        z-index: 6;
+        background-color: white;
+    }
+
+    #modalPhoto {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    :global(body) {
+        background-color: white;
     }
 </style>
