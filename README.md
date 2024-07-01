@@ -1,38 +1,26 @@
-# create-svelte
+![Pexels for Photopea](https://photopea-pexels.vercel.app/banner.jpg)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+# Pexels for Photopea
 
-## Creating a project
+Find free, high quality photos for your edits, without ever leaving Photopea.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+On Photopea, go to **Window -> Plugins** and search for Pexels. Once installed, the Pexels icon will appear in the sidebar at the right of the window.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+A complete guide to installing Photopea plugins can be found on the [Lunal Graphics blog](https://lunalgraphics.com/blog/2).
 
-## Developing
+## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+By default, the plugin will display 50 photos curated by the Pexels staff. Show more photos by scrolling to the bottom and pressing **Show More**. To add a photo to your document, click on its thumbnail, select a size, and press **Add to Document**.
 
-```bash
-npm run dev
+To search for photos, type a topic into the searchbar at the top of the plugin window. Search by pressing `Enter`, or by clicking away from the searchbar.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+To view a photo on Pexels, click on the thumbnail, then click on the photo itself.
 
-## Building
+## Contributing
 
-To create a production version of your app:
+Contributions are welcome! I have only two conditions:
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+1. If you just want to change the aesthetic of the plugin, make your suggestion in [Issues](https://github.com/yikuansun/photopea-pexels/issues) rather than making a Pull Request.
+2. If you want to make a change which compromises or removes an existing feature, ask me in [Issues](https://github.com/yikuansun/photopea-pexels/issues) before making a Pull Request.
