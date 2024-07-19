@@ -1,7 +1,7 @@
 <script>
     import { base } from "$app/paths";
     import { onMount } from "svelte";
-    import Photopea from "$lib/photopea.mjs";
+    import Photopea from "photopea";
     import { fly } from "svelte/transition";
 
     let photos = [];
@@ -76,9 +76,8 @@
             </select>
         </label>
         <button on:click={() => {
-            Photopea.runScript(window.parent, `
-                app.open("${modalPhoto["src"][exportSize]}", null, true);
-            `);
+            let pea = new Photopea(window.parent);
+            pea.openFromURL(modalPhoto["src"][exportSize], true);
         }} style:width="100%"
         style:box-sizing="border-box">
             Add to Document
