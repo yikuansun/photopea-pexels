@@ -11,6 +11,7 @@
     let modalPhoto = {};
     let modalOpen = false;
     let exportSize = "medium";
+    let columns = 3;
 
     async function getPhotos() {
         let response = await fetch(base + "/api/search?q=" + query);
@@ -38,13 +39,20 @@
 </div>
 
 <div class="image-gallery">
-    {#each photos as p}
-        <li on:click={() => {
-            modalPhoto = p;
-            modalOpen = true;
-        }}>
-            <img src={p["src"]["medium"]} alt={p["alt"]} draggable={false} />
-        </li>
+    {#each { length: columns } as _, columnIndex}
+        <div class="column" style:width="{Math.floor(100 / columns)}%" style:padding-left={(columnIndex == 0)?"0":"8px"}>
+            {#each photos.filter((p, i) => {
+                return i % columns == columnIndex;
+            }) as p, i}
+                <a href={p["url"]} on:click={(e) => {
+                    e.preventDefault();
+                    modalPhoto = p;
+                    modalOpen = true;
+                }}>
+                    <img src={p["src"]["medium"]} alt={p["alt"]} draggable={false} />
+                </a>
+            {/each}
+        </div>
     {/each}
 </div>
 {#if morePages}
@@ -87,32 +95,22 @@
 
 <style>
     .image-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
         margin: 8px;
         margin-top: 0;
     }
 
-    .image-gallery > li {
-        height: 100px;
-        position: relative;
-        list-style-type: none;
-        flex-grow: 1;
-        cursor: pointer;
+    .column {
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: border-box;
+        padding-left: 8px;
     }
 
-    .image-gallery li img {
-        object-fit: cover;
+    .image-gallery img {
         width: 100%;
-        height: 100%;
-        vertical-align: middle;
-        user-select: none;
-    }
-
-    .image-gallery::after {
-        content: "";
-        flex-grow: 999;
+        height: auto;
+        display: block;
+        margin-bottom: 8px;
     }
 
     #searchBar {
