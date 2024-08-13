@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import Photopea from "photopea";
     import { fly } from "svelte/transition";
-    import closeIcon from "$lib/x.png";
+    import X from "$lib/X.svelte";
 
     let photos = [];
     let query = "";
@@ -66,9 +66,7 @@
 
 {#if modalOpen}
     <div id="leModal" transition:fly={{ y: "100vh" }}>
-        <button on:click={() => { modalOpen = false; }} class="closeButton">
-            <img src={closeIcon} alt="X" width="28" style:padding="8px" />
-        </button>
+        <X style="position: absolute; top: 8px; right: 8px;" onClick={() => { modalOpen = false; }} radius={12} thickness={3} />
         Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
         <br />
         <a target="_blank" href={modalPhoto["url"]}>
@@ -192,18 +190,6 @@
         outline: none!important;
 
      }
-
-     .closeButton {
-        position: absolute;
-        top: 0;
-        right: 0px;
-        background-color: transparent!important;
-        border: 0;
-        padding: 0;
-        color: grey;
-        font-size: 32px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
 </style>
 
 <svelte:head>
