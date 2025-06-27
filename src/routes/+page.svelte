@@ -113,9 +113,10 @@
             </tr>
             <tr style:height="0">
                 <td>
-                    <button on:click={() => {
+                    <button on:click={async () => {
                         let pea = new Photopea(window.parent);
-                        pea.openFromURL(modalPhoto["src"][exportSize], true);
+                        let [ documentOpen, _ ] = await pea.runScript("app.echoToOE(app.documents.length > 0);");
+                        await pea.openFromURL(modalPhoto["src"][exportSize], documentOpen);
                     }} style:width="100%"
                     style:box-sizing="border-box">
                         Add to Document
