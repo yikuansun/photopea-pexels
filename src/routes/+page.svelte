@@ -79,30 +79,50 @@
 {#if modalOpen}
     <div id="leModal" transition:fly={{ y: "100vh" }}>
         <X style="position: absolute; top: 8px; right: 8px;" onClick={() => { modalOpen = false; }} radius={12} thickness={3} />
-        Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
-        <br />
-        <a target="_blank" href={modalPhoto["url"]}>
-            <div id="modalPhoto" style:background-image="url('{modalPhoto["src"]["medium"]}')" style:margin-top="7px"></div>
-        </a>
-        <label style:display="block"
-            style:text-align="center"
-            style:margin="7px">
-            Size:
-            <select bind:value={exportSize}>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="large2x">Double Large</option>
-                <option value="original">Original Size</option>
-            </select>
-        </label>
-        <button on:click={() => {
-            let pea = new Photopea(window.parent);
-            pea.openFromURL(modalPhoto["src"][exportSize], true);
-        }} style:width="100%"
-        style:box-sizing="border-box">
-            Add to Document
-        </button>
+        <table style:width="100%" style:height="100%">
+            <tr style:height="0">
+                <td>
+                    Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
+                </td>
+            </tr>
+            <tr>
+                <td style:background-image="url('{modalPhoto["src"]["large"]}')"
+                    style:background-size="contain" style:background-position="center"
+                    style:background-repeat="no-repeat"></td>
+            </tr>
+            <tr style:height="0">
+                <td>
+                    <a target="_blank" href={modalPhoto["url"]}>View on Pexels</a>
+                </td>
+            </tr>
+            <tr style:height="0">
+                <td>
+                    <label style:display="block"
+                        style:text-align="center"
+                        style:margin="7px">
+                        Size:
+                        <select bind:value={exportSize}>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="large2x">Double Large</option>
+                            <option value="original">Original Size</option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr style:height="0">
+                <td>
+                    <button on:click={() => {
+                        let pea = new Photopea(window.parent);
+                        pea.openFromURL(modalPhoto["src"][exportSize], true);
+                    }} style:width="100%"
+                    style:box-sizing="border-box">
+                        Add to Document
+                    </button>
+                </td>
+            </tr>
+        </table>
     </div>
 {/if}
 
