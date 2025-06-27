@@ -30,10 +30,22 @@
         pagesRead++;
     }
 
+    function getColumnCount() {
+        let width = window.innerWidth;
+        if (width < 250) columns = 1;
+        else if (width < 360) columns = 2;
+        else if (width < 490) columns = 3;
+        else if (width < 640) columns = 4;
+        else columns = 5;
+    }
+
     onMount(() => {
         getPhotos();
+        getColumnCount();
     });
 </script>
+
+<svelte:window on:load={getColumnCount} on:resize={getColumnCount} />
 
 <div id="topBar">
     <input id="searchBar" type="text" bind:value={query} placeholder="Search for photos" on:change={getPhotos} />
