@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Canva Sans";
+    src: url(/fonts/CanvaSans-Regular.ttf) format("ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url(/fonts/HelveticaNeueMedium.otf) format("otf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(/fonts/Roboto-Medium.ttf) format("ttf");
+    font-weight: normal;
+}

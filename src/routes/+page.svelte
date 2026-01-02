@@ -53,7 +53,7 @@
 
 <div class="image-gallery">
     {#each { length: columns } as _, columnIndex}
-        <div class="column" style:width="{Math.floor(100 / columns)}%" style:padding-left={(columnIndex == 0)?"0":"8px"}>
+        <div class="column" style:width="{Math.floor(100 / columns)}%" style:padding-left={(columnIndex == 0)?"0":"12px"}>
             {#each photos.filter((p, i) => {
                 return i % columns == columnIndex;
             }) as p, i}
@@ -73,7 +73,8 @@
         style:margin="8px"
         style:margin-top={0}
         style:width="calc(100% - 16px)"
-        style:box-sizing="border-box">Show More</button>
+        style:box-sizing="border-box"
+        class="button-outline">Show More</button>
 {/if}
 
 {#if modalOpen}
@@ -129,40 +130,51 @@
 
 <style>
     .image-gallery {
-        margin: 8px;
-        margin-top: 0;
+        margin: 12px;
     }
 
     .column {
         display: inline-block;
         vertical-align: top;
         box-sizing: border-box;
-        padding-left: 8px;
+        padding-left: 12px;
     }
 
     .image-gallery img {
         width: 100%;
         height: auto;
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
+        border-radius: 12px;
+        transition: box-shadow 0.36s;
+    }
+
+    .image-gallery img:hover {
+        box-shadow: 0 0 12px black;
     }
 
     #searchBar {
         width: 100%;
         box-sizing: border-box;
-        padding: 5px;
-        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        padding: 12px 16px;
+        font-family: "Canva Sans", "Helvetica Neue", Roboto, -apple-system, blinkmacsystemfont, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #191919;
         outline: none!important;
-        border-radius: 4px;
-        border: 1px solid grey;
+        border-radius: 8px;
+        border: 1px solid #f5f5f5;
+        background-color: #f7f7f7;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     #topBar {
         position: sticky;
         top: 0; /* global body margin */
         background-color: white;
-        padding: 8px;
+        padding: 12px;
         z-index: 5;
+        border-bottom: 2px solid #f5f5f5;
     }
 
     :global(body) {
@@ -193,22 +205,34 @@
 
     :global(body) {
         background-color: white;
-        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-family: "Canva Sans", "Helvetica Neue", Roboto, -apple-system, blinkmacsystemfont, sans-serif;
     }
 
     button {
-        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        background-color: #05a081;
+        font-family: "Canva Sans", "Helvetica Neue", Roboto, -apple-system, blinkmacsystemfont, sans-serif;
+        font-weight: 700;
+        background-color: #54ca84;
         color: white;
         border: 0;
-        padding: 8px 16px;
+        padding: 12px 18px;
         border-radius: 5px;
-        transition: background-color 0.2s;
+        transition: background-color 0.36s, border-color 0.36s;
     }
 
     button:hover {
-        background-color: #059377;
+        background-color: #32ac64;
         cursor: pointer;
+    }
+
+    .button-outline {
+        background-color: transparent;
+        color: #191919;
+        border: 1px solid #ededed;
+    }
+
+    .button-outline:hover {
+        background-color: #f7f7f7;
+        border-color: #747474
     }
 
     a {
@@ -216,7 +240,7 @@
     }
 
      select {
-        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-family: "Canva Sans", "Helvetica Neue", Roboto, -apple-system, blinkmacsystemfont, sans-serif;
         border: 1px solid grey;
         border-radius: 4px;
         padding: 3px 5px;
@@ -224,9 +248,3 @@
 
      }
 </style>
-
-<svelte:head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
-</svelte:head>

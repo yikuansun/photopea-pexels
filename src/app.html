@@ -5,6 +5,28 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
+		<style>
+			@font-face {
+				font-family: "Canva Sans";
+				src: url(%sveltekit.assets%/fonts/CanvaSans-Regular.ttf) format("truetype");
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			@font-face {
+				font-family: "Helvetica Neue";
+				src: url(%sveltekit.assets%/fonts/HelveticaNeueMedium.otf) format("opentype");
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			@font-face {
+				font-family: "Roboto";
+				src: url(%sveltekit.assets%/fonts/Roboto-Medium.ttf) format("truetype");
+				font-weight: normal;
+				font-style: normal;
+			}
+		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
