@@ -80,51 +80,40 @@
 {#if modalOpen}
     <div id="leModal" transition:fly={{ y: "100vh" }}>
         <X style="position: absolute; top: 8px; right: 8px;" onClick={() => { modalOpen = false; }} radius={12} thickness={3} />
-        <table style:width="100%" style:height="100%">
-            <tr style:height="0">
-                <td>
-                    Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
-                </td>
-            </tr>
-            <tr>
-                <td style:background-image="url('{modalPhoto["src"]["large"]}')"
-                    style:background-size="contain" style:background-position="center"
-                    style:background-repeat="no-repeat"></td>
-            </tr>
-            <tr style:height="0">
-                <td>
-                    <a target="_blank" href={modalPhoto["url"]}>View on Pexels</a>
-                </td>
-            </tr>
-            <tr style:height="0">
-                <td>
-                    <label style:display="block"
-                        style:text-align="center"
-                        style:margin="7px">
-                        Size:
-                        <select bind:value={exportSize}>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                            <option value="large2x">Double Large</option>
-                            <option value="original">Original Size</option>
-                        </select>
-                    </label>
-                </td>
-            </tr>
-            <tr style:height="0">
-                <td>
-                    <button on:click={async () => {
-                        let pea = new Photopea(window.parent);
-                        let [ documentOpen, _ ] = await pea.runScript("app.echoToOE(app.documents.length > 0);");
-                        await pea.openFromURL(modalPhoto["src"][exportSize], documentOpen);
-                    }} style:width="100%"
-                    style:box-sizing="border-box">
-                        Add to Document
-                    </button>
-                </td>
-            </tr>
-        </table>
+        <div style:display="flex" style:flex-direction="column" style:width="100%" style:height="100%" style:gap="10px">
+            <div>
+                Photographer: <a target="_blank" href={modalPhoto["photographer_url"]}>{modalPhoto["photographer"]}</a>
+            </div>
+            <img src={modalPhoto["src"]["large"]} alt={modalPhoto["alt"]} draggable={false} style:width="100%" style:min-height="0" style:flex-grow="2" style:object-fit="contain" />
+
+            <div>
+                <a target="_blank" href={modalPhoto["url"]}>View on Pexels</a>
+            </div>
+            <div>
+                <label style:display="block"
+                    style:text-align="center"
+                    style:margin="7px">
+                    Size:
+                    <select bind:value={exportSize}>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="large2x">Double Large</option>
+                        <option value="original">Original Size</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <button on:click={async () => {
+                    let pea = new Photopea(window.parent);
+                    let [ documentOpen, _ ] = await pea.runScript("app.echoToOE(app.documents.length > 0);");
+                    await pea.openFromURL(modalPhoto["src"][exportSize], documentOpen);
+                }} style:width="100%"
+                style:box-sizing="border-box">
+                    Add to Document
+                </button>
+            </div>
+        </div>
     </div>
 {/if}
 
